@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VerSary</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/auto.css" />
+    <link rel="stylesheet" href="css/versary.css" />
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .page-container {
+        background-image: url("img/bg.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        max-height: 100vh;
+        padding: 20px;
+        position: relative;
+        z-index: -4;
+      }
+    </style>
+  </head>
+
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <body>
+    <!-- PAGE: Day One -->
+    <div class="page-container" id="paralax">
+      <section class="day-one-section">
+        <img src="img/day.png" class="day-one" />
+      </section>
+      <div class="container"><img src="img/1.png" alt="" class="img-a" /></div>
+      <div class="container"><img src="img/2.png" alt="" class="img-b" /></div>
+      <div class="container"><img src="img/3.png" alt="" class="img-c" /></div>
+      <div class="container"><img src="img/4.png" alt="" class="img-d" /></div>
+      <div class="container"><img src="img/5.png" alt="" class="img-f" /></div>
+    </div>
+
+    <!-- PAGE: Video -->
+    <div class="page-vidio">
+      <div class="grid-section-1">
+        <div class="video-container fade-in-scroll" style="--delay: 0.1s">
+          <video src="vidio/1.mp4" class="video-placeholder1 hover-video" loop muted></video>
+        </div>
+        <div class="video-container fade-in-scroll" style="--delay: 0.2s">
+          <video src="vidio/3.mp4" class="video-placeholder3 hover-video" loop muted></video>
+        </div>
+        <div class="video-container fade-in-scroll" style="--delay: 0.2s">
+          <video src="vidio/2.mp4" class="video-placeholder2 hover-video" loop muted></video>
+        </div>
+      </div>
+
+      <div class="grid-section-2">
+        <div class="video-container fade-in-scroll" style="--delay: 0.4s">
+          <video src="vidio/4.mp4" class="video-placeholder4 hover-video" loop muted></video>
+        </div>
+        <div class="video-container fade-in-scroll" style="--delay: 0.3s">
+          <video src="vidio/13.mp4" class="video-placeholder5 hover-video" loop muted></video>
+        </div>
+      </div>
+
+      <div class="grid-section-3">
+        <div class="video-container fade-in-scroll" style="--delay: 0.4s">
+          <video src="vidio/10.mp4" class="video-placeholder10 hover-video" loop muted></video>
+        </div>
+        <div class="video-container fade-in-scroll" style="--delay: 0.3s">
+          <video src="vidio/6.mp4" class="video-placeholder6 hover-video" loop muted></video>
+        </div>
+      </div>
+
+      <div class="grid-section-5">
+        <div class="video-container fade-in-scroll" style="--delay: 0.3s">
+          <video src="vidio/5.mp4" class="video-placeholder11 hover-video" loop muted></video>
+        </div>
+        <div class="video-container fade-in-scroll" style="--delay: 0.3s">
+          <video src="vidio/11.mp4" class="video-placeholder11 hover-video" loop muted></video>
+        </div>
+        <div class="video-container fade-in-scroll" style="--delay: 0.3s">
+          <video src="vidio/12.mp4" class="video-placeholder11 hover-video" loop muted></video>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: Music -->
+    <section class="page-music">
+      <div class="music-wrap">
+        <div class="music-player scroll-fade">
+          <div class="d-flex mb-2 gap-3">
+            <img class="album-cover" id="albumCover" />
+            <div style="flex: 1">
+              <div class="song-title" id="songTitle">Pilih Lagu</div>
+              <div class="artist-name" id="artistName">Artis</div>
+            </div>
+          </div>
+
+          <div class="progress-bar" id="progressBar" aria-hidden="true">
+            <div class="progress" id="progress"></div>
+          </div>
+          <div class="d-flex justify-content-between" style="font-size:13px; color:rgba(255,255,255,0.9)">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+
+          <div class="controls mt-2">
+            <button class="control-btn" id="prevBtn">⏮</button>
+            <button class="control-btn play-btn" id="playBtn">▶</button>
+            <button class="control-btn" id="nextBtn">⏭</button>
+          </div>
+
+          <audio id="audioPlayer" preload="metadata"></audio>
+          <audio id="backsound" src="music/girl in red - we fell in love in october.mp3" preload="auto" loop></audio>
+          <audio id="backsound" src="music/yung kai - blue (official music video).mp3" preload="auto" loop></audio>
+          <audio id="backsound" src="music/wave to earth - seasons.mp3" preload="auto" loop></audio>
+          <audio id="backsound" src="music/Donne Maula - Bercinta Lewat Kata (Official Lyric Video) OST Jatuh Cinta Seperti di Film-Film.mp3" preload="auto" loop></audio>
+        </div>
+
+        <div class="lyrics-box scroll-fade" id="lyricsBox">
+          <div class="lyrics-title" id="lyricsTitle">♪ Lirik Lagu ♪</div>
+          <div class="lyrics-content" id="lyricsContent">Pilih lagu untuk melihat lirik...</div>
+        </div>
+      </div>
+
+      <div class="envelope-wrapper" id="envelopeWrapper" fade-in-scroll>
+        <div class="envelope">
+          <div class="flap"></div>
+          <div class="letter">
+            <div class="letter-content">
+              <div class="heart-icon">💌</div>
+            </div>
+          </div>
+        </div>
+        <div class="click-hint">👆 Buka</div>
+      </div>
+
+      <div class="message-overlay" id="messageOverlay">
+        <div class="message-box">
+          <button class="close-btn" id="closeBtn">×</button>
+          <h2>sedikit isi hati aja ini mah</h2>
+          <p>halooo!!! aku cuman mau ngingetin kalo hari ini HARI ANNIVERSARY KITAA
+          OMAIGAADDDDD ... (isi pesan kamu tetap dipertahankan penuh)
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE: Bucket List -->
+    <div class="page-bucket">
+      <div class="bucket-list">
+        <div class="bucket-title">💖 BUCKET LIST 💖</div>
+        <div class="bucket-input-container">
+          <input type="text" id="bucketInput" placeholder="Tambahin bubb" />
+          <button class="btn-add" onclick="window.addBucketItem()"><i class="fas fa-plus"></i></button>
+        </div>
+        <div id="bucketList"></div>
+      </div>
+    </div>
+
+    <!-- PAGE: Slider -->
+    <div class="page-slide">
+      <div class="slider-container">
+        <div class="slider" reverse="true" style="--width: 250px; --height: 250px; --quantity: 9">
+          <div class="list">
+            <div class="item" style="--position: 1"><img src="img/img.jpg" alt="" /></div>
+            <div class="item" style="--position: 2"><img src="img/img2.jpg" alt="" /></div>
+            <div class="item" style="--position: 3"><img src="img/img3.jpg" alt="" /></div>
+            <div class="item" style="--position: 4"><img src="img/img4.jpg" alt="" /></div>
+            <div class="item" style="--position: 5"><img src="img/img5.jpg" alt="" /></div>
+            <div class="item" style="--position: 6"><img src="img/img6.jpg" alt="" /></div>
+            <div class="item" style="--position: 7"><img src="img/img7.jpg" alt="" /></div>
+            <div class="item" style="--position: 8"><img src="img/img8.jpg" alt="" /></div>
+            <div class="item" style="--position: 9"><img src="img/img11.jpg" alt="" /></div>
+          </div>
+        </div>
+
+        <div class="slider" style="--width: 250px; --height: 250px; --quantity: 9">
+          <div class="list">
+            <div class="item" style="--position: 2"><img src="img/img.jpg" alt="" /></div>
+            <div class="item" style="--position: 3"><img src="img/img2.jpg" alt="" /></div>
+            <div class="item" style="--position: 4"><img src="img/img3.jpg" alt="" /></div>
+            <div class="item" style="--position: 5"><img src="img/img4.jpg" alt="" /></div>
+            <div class="item" style="--position: 6"><img src="img/img5.jpg" alt="" /></div>
+            <div class="item" style="--position: 7"><img src="img/img6.jpg" alt="" /></div>
+            <div class="item" style="--position: 8"><img src="img/img7.jpg" alt="" /></div>
+            <div class="item" style="--position: 9"><img src="img/img8.jpg" alt="" /></div>
+            <div class="item" style="--position: 10"><img src="img/img11.jpg" alt="" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white text-center py-4 mt-auto">
+      <div class="container">
+        <p class="mb-2">Copyright@Made <span class="text-danger"></span> by <span class="fw-semibold text-pink">Reggsluvyaa &lt;3</span></p>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/versary.js"></script>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        updateDoc,
+        deleteDoc,
+        doc,
+        query,
+        orderBy,
+        onSnapshot
+      } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+      // FUNGSI: Konfigurasi Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBzBzawX13sjizS_cCBe3GCiRjeGHHqbq4",
+        authDomain: "aniv-4d308.firebaseapp.com",
+        projectId: "aniv-4d308",
+        storageBucket: "aniv-4d308.firebasestorage.app",
+        messagingSenderId: "390600047649",
+        appId: "1:390600047649:web:97c158125e8a84c94db760"
+      };
+
+      // FUNGSI: Inisialisasi Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const bucketListRef = collection(db, "bucketList");
+
+      // FUNGSI: Load data bucket list realtime
+      function loadBucketList() {
+        const q = query(bucketListRef, orderBy("createdAt", "desc"));
+        onSnapshot(q, (snapshot) => {
+          const container = document.getElementById("bucketList");
+          if (snapshot.empty) {
+            container.innerHTML = `
+              <div class="empty-state">
+                <i class="fas fa-clipboard-list"></i>
+                <p>Tambahin listnya bub!</p>
+              </div>`;
+            return;
+          }
+
+          let html = "";
+          snapshot.forEach((doc) => {
+            const item = doc.data();
+            html += `
+              <div class="bucket-item ${item.completed ? "completed" : ""}" data-id="${doc.id}">
+                <input type="checkbox" class="bucket-checkbox" ${item.completed ? "checked" : ""} 
+                      onchange="window.toggleComplete('${doc.id}', ${!item.completed})">
+                <span class="bucket-text" id="text-${doc.id}">${item.text}</span>
+                <div class="bucket-actions">
+                  <button class="btn-action btn-edit" onclick="window.editBucketItem('${doc.id}', '${item.text.replace(/'/g, "\\'")}')">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn-action btn-delete" onclick="window.deleteBucketItem('${doc.id}')">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>`;
+          });
+          container.innerHTML = html;
+        });
+      }
+
+      // FUNGSI: Tambah item baru
+      window.addBucketItem = async function () {
+        const input = document.getElementById("bucketInput");
+        const text = input.value.trim();
+
+        if (text === "") {
+          alert("Masukkan rencana date dulu ya! 💕");
+          return;
+        }
+
+        try {
+          await addDoc(bucketListRef, {
+            text,
+            completed: false,
+            createdAt: new Date()
+          });
+          input.value = "";
+          createHeartBurst();
+        } catch (error) {
+          console.error("Error adding document: ", error);
+        }
+      };
+
+      // FUNGSI: Ubah status checklist
+      window.toggleComplete = async function (id, completed) {
+        try {
+          const itemRef = doc(db, "bucketList", id);
+          await updateDoc(itemRef, { completed });
+          if (completed) createHeartBurst();
+        } catch (error) {
+          console.error("Error updating document: ", error);
+        }
+      };
+
+      // FUNGSI: Edit item
+      window.editBucketItem = async function (id, currentText) {
+        const newText = prompt("Edit rencana date:", currentText);
+        if (newText && newText.trim() !== "" && newText.trim() !== currentText) {
+          try {
+            const itemRef = doc(db, "bucketList", id);
+            await updateDoc(itemRef, { text: newText.trim() });
+          } catch (error) {
+            console.error("Error updating document: ", error);
+          }
+        }
+      };
+
+      // FUNGSI: Hapus item
+      window.deleteBucketItem = async function (id) {
+        if (confirm("Yakin mau hapus rencana ini? 🥺")) {
+          try {
+            await deleteDoc(doc(db, "bucketList", id));
+          } catch (error) {
+            console.error("Error deleting document: ", error);
+          }
+        }
+      };
+
+      // FUNGSI: Efek hati
+      function createHeartBurst() {
+        const heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight + "px";
+        heart.style.fontSize = "24px";
+        heart.style.opacity = "1";
+        heart.style.transition = "all 2s ease-out";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.style.top = "-20px";
+          heart.style.opacity = "0";
+        }, 100);
+
+        setTimeout(() => heart.remove(), 2000);
+      }
+
+      // FUNGSI: Inisialisasi awal
+      loadBucketList();
+
+      // FUNGSI: Tambah item via Enter
+      document.getElementById("bucketInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") window.addBucketItem();
+      });
+    </script>
+  </body>
+</html>

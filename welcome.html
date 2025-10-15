@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Gift Idea</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #BA487F 0%, #FFECCC 100%);
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .main-container {
+      max-width: 900px;
+      margin: 50px auto;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gift-card {
+      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      border-radius: 30px;
+      padding: 30px;
+      max-width: 600px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      animation: slideIn 0.8s ease-out 0.3s backwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .photo-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid rgba(255,255,255,0.8);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin-bottom: 15px;
+    }
+    .photo-circle:hover { transform: scale(1.1) rotate(5deg); }
+    .photo-circle img { width: 100%; height: 100%; object-fit: cover; }
+
+    .calculator {
+        border-radius: 15px;
+        padding: 12px;
+        max-width: 220px;
+        margin: auto;
+    }
+
+    .display {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 12px;
+      min-height: 40px;
+      font-size: 1.3em;
+      text-align: right;
+      color: #333;
+      font-weight: bold;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .display.error {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+      color: white;
+      animation: shake 0.5s ease;
+    }
+
+    .display.success {
+      background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+      color: white;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .btn-calc {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 1em;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 100%;
+      height: 40px;
+      font-weight: bold;
+    }
+    .btn-calc:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .btn-calc:active { transform: translateY(0); box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
+
+    .btn-clear {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    }
+
+    .btn-enter {
+      background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+    }
+
+    .watermark {
+      text-align: center;
+      margin-top: 10px;
+      color: rgba(255,255,255,0.9);
+      font-style: italic;
+      font-size: 1em;
+    }
+
+    .hint-text {
+      text-align: center;
+      color: rgba(255,255,255,0.95);
+      margin-top: 15px;
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+
+    .locked-content {
+      display: none;
+      animation: fadeIn 1s ease;
+    }
+
+    .unlocked .locked-content {
+      display: block;
+    }
+
+    .unlocked .calculator {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .message-box {
+      background: rgba(255,255,255,0.9);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .message-box h2 {
+      color: #BA487F;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .message-box p {
+      color: #333;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .floating-hearts {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    .floating-heart {
+      position: absolute;
+      font-size: 2em;
+      animation: float-up 4s ease-in-out forwards;
+      opacity: 0;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .gift-card { width: 100%; height: auto; padding: 20px; }
+      .photo-circle { width: 120px; height: 120px; }
+      .btn-calc { font-size: 1em; height: 50px; }
+      .display { font-size: 1.5em; min-height: 50px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <div class="container">
+    <div class="main-container">
+      <div class="gift-card" id="giftCard">
+        <div class="row g-3 align-items-center justify-content-between">
+          <div class="col-md-4 text-center">
+            <div class="photo-section">
+              <div class="photo-circle" id="photoCircle">
+                <img src="img/img.jpg" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-8 d-flex justify-content-end">
+            <div class="calculator">
+              <div class="display" id="display"></div>
+              <div class="row g-2">
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('1')">1</button></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('2')">2</button></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('3')">3</button></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('4')">4</button></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('5')">5</button></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('6')">6</button></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('7')">7</button></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('8')">8</button></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('9')">9</button></div>
+                <div class="col-4"></div>
+                <div class="col-4"><button class="btn-calc" onclick="appendNumber('0')">0</button></div>
+                <div class="col-4"></div>
+              </div>
+              <div class="hint-text">💡 Hint: DD MM YY</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="locked-content">
+          <div class="message-box">
+            <h2>🎉 Berhasil Masuk! 🎉</h2>
+            <p>Selamat! Kamu telah membuka hadiah spesial ini! 💝</p>
+            <p>Semoga hari spesialmu penuh dengan kebahagiaan dan cinta! ❤️</p>
+          </div>
+        </div>
+
+        <div class="watermark">(made with love) 💝</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentValue = '';
+    const display = document.getElementById('display');
+    const correctPin = '151024';
+
+    function updateDisplay() {
+      if (currentValue === '') {
+        display.textContent = 'Masukkan PIN';
+      } else {
+        display.textContent = '•'.repeat(currentValue.length);
+      }
+    }
+
+    function appendNumber(num) {
+      if (currentValue.length < 6) {
+        currentValue += num;
+        updateDisplay();
+        createHeart();
+        
+        if (currentValue.length === 6) {
+          setTimeout(() => checkPin(), 300);
+        }
+      }
+    }
+
+    function clearDisplay() {
+      currentValue = '';
+      display.classList.remove('error', 'success');
+      updateDisplay();
+    }
+
+    function checkPin() {
+      if (currentValue === correctPin) {
+        display.textContent = '✓ Benar!';
+        display.classList.remove('error');
+        display.classList.add('success');
+
+        createHeartBurst();
+        setTimeout(() => {
+          window.location.href = 'versaryy.html';
+        }, 1000);
+      } else {
+        display.textContent = '✗ Salah!';
+        display.classList.remove('success');
+        display.classList.add('error');
+        
+        setTimeout(() => {
+          clearDisplay();
+        }, 1500);
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.textContent = ['💖', '❤️', '💕', '💗', '💝'][Math.floor(Math.random() * 5)];
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = window.innerHeight + 'px';
+      document.getElementById('floatingHearts').appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    function createHeartBurst() {
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => createHeart(), i * 100);
+      }
+    }
+    setInterval(createHeart, 3000);
+    document.getElementById('photoCircle').addEventListener('click', createHeartBurst);
+  </script>
+</body>
+</html>
